@@ -34,7 +34,7 @@ class RestoController extends AbstractController
         }
 
         return $this->render('resto/show.html.twig', [
-            'restaurant' => $restaurant, // Passer l'objet restaurant à la vue
+            'restaurant' => $restaurant, // Passer l'objet restaurant à la vue sans les reviews
         ]);
     }
 }
