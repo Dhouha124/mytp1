@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil - NotaResto{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            color: #1d3557;
+            margin-top: 50px;
+            font-size: 2.5em;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .greeting {
+            font-size: 1.5em;
+            color: #457b9d;
+        }
+
+        .btn {
+            background-color: #457b9d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .btn:hover {
+            background-color: #1d3557;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>Bonjour à notre restaurant</h1>
+        <p class="greeting">Nous sommes heureux de vous accueillir dans notre restaurant NotaResto !</p>
+
+        <!-- Button to navigate to restaurants page -->
+        <a href="{{ path('restaurant_index') }}">
+            <button class="btn">Voir nos restaurants</button>
+        </a>
+    </div>
+{% endblock %}

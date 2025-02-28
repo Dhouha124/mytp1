@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ restaurant.name }} - Détails{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>{{ restaurant.name }}</h1>
+        {% if restaurant.imageURL %}
+            <img src="{{ restaurant.imageURL }}" alt="{{ restaurant.name }}" style="width: 300px; height: 200px; object-fit: cover; border-radius: 5px;">
+        {% else %}
+            <p>Aucune image disponible.</p>
+        {% endif %}
+        
+        <p><strong>Adresse :</strong> {{ restaurant.adresse }}</p>
+        <p><strong>Type de cuisine :</strong> {{ restaurant.cuisineType }}</p>
+        <p><strong>Description :</strong> {{ restaurant.description }}</p>
+        <p><strong>Note :</strong> {{ restaurant.getRating() }} / 5</p>
+
+        <h3>Avis</h3>
+        <ul>
+            {% for review in restaurant.getReviews() %}
+                <li><strong>{{ review.author }}</strong> : {{ review.comment }}</li>
+            {% else %}
+                <li>Aucun avis pour ce restaurant.</li>
+            {% endfor %}
+        </ul>
+
+        <a href="{{ path('restaurant_index') }}" class="btn">Retour à la liste</a>
+    </div>
+{% endblock %}

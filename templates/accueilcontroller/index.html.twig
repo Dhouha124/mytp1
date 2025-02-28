@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil - NotaResto{% endblock %}
+
+{% block body %}
+    <h1>Restaurants les mieux notés</h1>
+    <ul>
+        {% for restaurant in restaurants %}
+            <li>{{ restaurant.name }} - {{ restaurant.rating }}/5</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

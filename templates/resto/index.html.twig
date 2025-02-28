@@ -1,0 +1,132 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Restaurants{% endblock %}
+
+{% block body %}
+    <style>
+        /* Style global de la page */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Container principal */
+        .container {
+            width: 80%;
+            margin: 2em auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* En-tête */
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        /* Liste des restaurants */
+        .restaurant-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        /* Chaque élément de la liste */
+        .restaurant-list li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            margin-bottom: 15px;
+            padding: 15px;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+
+        .restaurant-list li:hover {
+            background-color: #f1f1f1;
+        }
+
+        /* Style du texte */
+        .restaurant-name {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .restaurant-info {
+            font-size: 1em;
+            color: #7f8c8d;
+        }
+
+        /* Bouton d'action */
+        .restaurant-action {
+            text-align: right;
+        }
+
+        .btn {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #2980b9;
+        }
+
+        /* Responsiveness */
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            .restaurant-list li {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .restaurant-action {
+                margin-top: 10px;
+                text-align: left;
+            }
+        }
+    </style>
+
+    <div class="container">
+        <h1>Liste des Restaurants</h1>
+
+        <ul class="restaurant-list">
+            {% for restaurant in rest %}
+                <li>
+                    <div>
+                        <img src="{{ restaurant.imageURL }}" alt="{{ restaurant.name }}" style="width: 100px; height: 100px; object-fit: cover; border-radius: 5px;">
+                        <span class="restaurant-name">{{ restaurant.name }}</span>
+                        <div class="restaurant-info">
+                            <p>{{ restaurant.adresse }} | {{ restaurant.cuisineType }}</p>
+                            <p>{{ restaurant.description }}</p>
+                        </div>
+                    </div>
+                    <div class="restaurant-action">
+                        <a href="{{ path('restaurant_show', { 'id': restaurant.id }) }}" class="btn">Voir</a>
+                    </div>
+                </li>
+            {% else %}
+                <li>Aucun restaurant trouvé.</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
